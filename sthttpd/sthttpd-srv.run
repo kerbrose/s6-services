@@ -1,0 +1,2 @@
+#!/usr/bin/execlineb -P
+exec thttpd -D -C /etc/thttpd.conf -l /var/log/sthttpd/thttpd.log

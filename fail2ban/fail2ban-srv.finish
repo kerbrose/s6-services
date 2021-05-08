@@ -1,0 +1,2 @@
+#!/usr/bin/execlineb -P
+if -t { test -d /var/run/fail2ban } rm -rf /var/run/fail2ban
