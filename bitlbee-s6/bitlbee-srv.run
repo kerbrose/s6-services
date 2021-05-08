@@ -1,0 +1,4 @@
+#!/usr/bin/execlineb -P
+foreground { install -dm 0755 -o bitlbee -g bitlbee /var/lib/bitlee /run/bitlbee }
+fdmove -c 2 1
+exec bitlbee -n -F -u bitlbee
