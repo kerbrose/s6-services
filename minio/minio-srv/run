@@ -1,5 +1,5 @@
 #!/usr/bin/execlineb -P
-envfile /etc/minio/minio.conf
+envfile /etc/s6/config/minio.conf
 importas -iu MINIO_VOLUMES MINIO_VOLUMES
 importas -u MINIO_OPTS MINIO_OPTS
 foreground { chown -R minio "$MINIO_VOLUMES" }

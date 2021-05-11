@@ -1,5 +1,5 @@
 #!/usr/bin/execlineb -P
-envfile /etc/s6/sv/webfsd-srv/conf
+envfile /etc/s6/config/webfs.conf
 importas -sCiu ARGS ARGS
 fdmove -c 2 1
 webfsd ${ARGS} -F -d

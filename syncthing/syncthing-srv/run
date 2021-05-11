@@ -1,5 +1,5 @@
 #!/usr/bin/execlineb -P
-envfile /etc/s6/sv/syncthing-srv/conf
+envfile /etc/s6/config/syncthing.conf
 importas -iu USER USER
 importas -iu HOMEDIR HOMEDIR
 export HOME $HOMEDIR

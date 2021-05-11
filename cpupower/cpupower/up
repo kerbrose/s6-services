@@ -1,5 +1,5 @@
 #!/usr/bin/execlineb -P
-envfile /etc/default/cpupower
+envfile /etc/s6/config/cpupower.conf
 importas -D "" governor governor
 importas -D "" min_freq min_freq
 importas -D "" max_freq max_freq

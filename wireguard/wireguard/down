@@ -1,6 +1,5 @@
 #!/usr/bin/execlineb -P
-
-envfile /etc/s6/sv/wireguard/conf
+envfile /etc/s6/config/wireguard.conf
 importas -i WG_INTERFACE WG_INTERFACE
 fdmove -c 2 1
 exec wg-quick down "$WG_INTERFACE"

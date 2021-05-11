@@ -1,5 +1,5 @@
 #!/usr/bin/execlineb -P
-envfile /etc/s6/sv/postgresql-srv/conf
+envfile /etc/s6/config/postgresql.conf
 importas -iu PGROOT PGROOT
 importas -iu PGDATA PGDATA
 importas -iu PGLOG PGLOG
