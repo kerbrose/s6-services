@@ -5,14 +5,18 @@ PKG="$1"
 DESTDIR="$2"
 
 SVDIR="${DESTDIR}"/etc/s6/sv
+CONFDIR="${DESTDIR}"/etc/s6/config
 
-SRCDIRS=$(find "${PKG}" -mindepth 1 -type d)
-SRCFILES=$(find "${PKG}" -mindepth 1 -type f)
-
-for d in "${SRCDIRS}"; do
-    install -v -d "${SVDIR}/${d#*/}"
+for dir in $PKG/*; do
+    if [ -d $dir ]; then
+        dirname=$(basename $dir)
+        install -v -d "${SVDIR}/$dirname"
+        for file in $dir/*; do
+            install -v -m644 "$file" ${SVDIR}/$dirname
+        done
+    fi
 done
 
-for f in "${SRCFILES}"; do
-    install -v -m644 "$f" "${SVDIR}/${f#*/}"
+for conf in $PKG/*.conf; do
+    install -v -m644 "$conf" ${CONFDIR}
 done
