@@ -17,7 +17,9 @@ for dir in $PKG/*; do
     fi
 done
 
-for conf in $PKG/*.conf; do
-    install -v -d "${CONFDIR}"
-    install -v -m644 "$conf" ${CONFDIR}/$PKG.conf
-done
+if [ -e $PKG/*.conf ]; then
+    for conf in $PKG/*.conf; do
+        install -v -d "${CONFDIR}"
+        install -v -m644 "$conf" ${CONFDIR}/$PKG.conf
+    done
+fi
