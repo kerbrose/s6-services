@@ -1,0 +1,4 @@
+#!/usr/bin/execlineb -P
+envfile /etc/s6/config/exim.conf
+importas -sCiu OPTS OPTS
+s6-setuidgid exim exec exim -bdf -q30m ${OPTS}
