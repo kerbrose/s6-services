@@ -2,8 +2,8 @@
 envfile /etc/s6/config/syslog-ng.conf
 importas -sCiu DIRECTIVES DIRECTIVES
 ifelse { test -w /var/log } {
-foreground { install -d -o s6log -g s6log /var/log/syslog-ng }
-s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/syslog-ng
+	foreground { install -d -o s6log -g s6log /var/log/syslog-ng }
+	s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/syslog-ng
 }
 foreground { install -d -o s6log -g s6log /run/log/syslog-ng }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/syslog-ng

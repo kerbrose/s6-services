@@ -2,8 +2,8 @@
 envfile /etc/s6/config/webhook.conf
 importas -sCiu DIRECTIVES DIRECTIVES
 ifelse { test -w /var/log } {
-foreground { install -d -o s6log -g s6log /var/log/webhook }
-s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/webhook
+	foreground { install -d -o s6log -g s6log /var/log/webhook }
+	s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/webhook
 }
 foreground { install -d -o s6log -g s6log /run/log/webhook }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/webhook

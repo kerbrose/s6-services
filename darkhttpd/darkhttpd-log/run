@@ -2,8 +2,8 @@
 envfile /etc/s6/config/darkhttpd.conf
 importas -sCiu DIRECTIVES DIRECTIVES
 ifelse { test -w /var/log } {
-foreground { install -d -o s6log -g s6log /var/log/darkhttpd }
-s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/darkhttpd
+	foreground { install -d -o s6log -g s6log /var/log/darkhttpd }
+	s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/darkhttpd
 }
 foreground { install -d -o s6log -g s6log /run/log/darkhttpd }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/darkhttpd
