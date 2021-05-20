@@ -1,5 +1,9 @@
 #!/usr/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/distcc } install -d -m 0755 -o s6log -g s6log /var/log/distcc }
 envfile /etc/s6/config/distcc.conf
 importas -sCiu DIRECTIVES DIRECTIVES
+ifelse { test -w /var/log } {
+foreground { if -n -t { test -d /var/log/distcc } install -d -m 0755 -o s6log -g s6log /var/log/distcc }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/distcc
+}
+foreground { install -d -o s6log -g s6log /run/log/distcc }
+s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/distcc

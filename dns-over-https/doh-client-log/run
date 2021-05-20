@@ -1,5 +1,9 @@
 #!/usr/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/doh-client } install -d -m 0755 -o s6log -g s6log /var/log/doh-client }
 envfile /etc/s6/config/dns-over-https.conf
 importas -sCiu DOH_CLIENT_DIRECTIVES DOH_CLIENT_DIRECTIVES
+ifelse { test -w /var/log } {
+foreground { if -n -t { test -d /var/log/doh-client } install -d -m 0755 -o s6log -g s6log /var/log/doh-client }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DOH_CLIENT_DIRECTIVES} /var/log/doh-client
+}
+foreground { install -d -o s6log -g s6log /run/log/doh-client }
+s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/doh-client

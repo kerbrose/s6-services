@@ -1,5 +1,9 @@
 #!/usr/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/postgresql } install -d -m 0755 -o s6log -g s6log /var/log/postgresql }
 envfile /etc/s6/config/postgresql.conf
 importas -sCiu DIRECTIVES DIRECTIVES
+ifelse { test -w /var/log } {
+foreground { if -n -t { test -d /var/log/postgresql } install -d -m 0755 -o s6log -g s6log /var/log/postgresql }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/postgresql
+}
+foreground { install -d -o s6log -g s6log /run/log/postgresql }
+s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/postgresql

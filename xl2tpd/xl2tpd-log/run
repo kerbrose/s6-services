@@ -1,5 +1,9 @@
 #!/usr/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/xl2tpd } install -d -m 0755 -o s6log -g s6log /var/log/xl2tpd }
 envfile /etc/s6/config/xl2tpd.conf
 importas -sCiu DIRECTIVES DIRECTIVES
+ifelse { test -w /var/log } {
+foreground { if -n -t { test -d /var/log/xl2tpd } install -d -m 0755 -o s6log -g s6log /var/log/xl2tpd }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/xl2tpd
+}
+foreground { install -d -o s6log -g s6log /run/log/xl2tpd }
+s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/xl2tpd

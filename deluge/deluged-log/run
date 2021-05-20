@@ -1,5 +1,9 @@
 #!/usr/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/deluged } install -d -m 0755 -o s6log -g s6log /var/log/deluged }
 envfile /etc/s6/config/deluge.conf
 importas -sCiu DELUGED_DIRECTIVES DELUGED_DIRECTIVES
+ifelse { test -w /var/log } {
+foreground { if -n -t { test -d /var/log/deluged } install -d -m 0755 -o s6log -g s6log /var/log/deluged }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DELUGED_DIRECTIVES} /var/log/deluged
+}
+foreground { install -d -o s6log -g s6log /run/log/deluged }
+s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/deluged

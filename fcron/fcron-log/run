@@ -1,5 +1,9 @@
 #!/usr/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/fcron } install -d -m 0755 -o s6log -g s6log /var/log/fcron }
 envfile /etc/s6/config/fcron.conf
 importas -sCiu DIRECTIVES DIRECTIVES
+ifelse { test -w /var/log } {
+foreground { if -n -t { test -d /var/log/fcron } install -d -m 0755 -o s6log -g s6log /var/log/fcron }
 s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /var/log/fcron
+}
+foreground { install -d -o s6log -g s6log /run/log/fcron }
+s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/fcron
