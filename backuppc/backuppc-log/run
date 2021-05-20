@@ -1,6 +1,5 @@
 #!/usr/bin/execlineb -P
 foreground { if -n -t { test -d /var/log/backuppc } install -d -m 0755 -o s6log -g s6log /var/log/backuppc }
-foreground { chmod -R 755 /var/log/backuppc }
 foreground { touch /var/log/backuppc/LOG }
 foreground { chown backuppc /var/log/backuppc/LOG }
 envfile /etc/s6/config/backuppc.conf
