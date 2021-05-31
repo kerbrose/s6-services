@@ -1,0 +1,6 @@
+#!/usr/bin/execlineb -P
+envfile /etc/s6/config/tailscale.conf
+importas -iu PORT PORT
+importas -sCiu OPTS OPTS
+fdmove -c 2 1
+exec tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port $PORT $OPTS
