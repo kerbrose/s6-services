@@ -13,7 +13,7 @@ foreground {
 		backtick -n -E device { basename ${hd_device} }
 		envfile /etc/s6/config/hdparm.conf
 		importas -sCuD "" DEVICE_ARGS ${device}_args
-		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${sata_all_args} ${all_args}
+		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${pata_all_args} ${all_args} ${hd_device}
 }
 
 foreground {
@@ -21,7 +21,7 @@ foreground {
 		backtick -n -E device { basename ${sd_device} }
 		envfile /etc/s6/config/hdparm.conf
 		importas -sCuD "" DEVICE_ARGS ${device}_args
-		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${sata_all_args} ${all_args}
+		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${sata_all_args} ${all_args} ${sd_device}
 }
 
 foreground {
@@ -29,5 +29,5 @@ foreground {
 		backtick -n -E device { basename ${cd_device} }
 		envfile /etc/s6/config/hdparm.conf
 		importas -sCuD "" DEVICE_ARGS ${device}_args
-		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${sata_all_args} ${all_args}
+		redirfd -w 1 /dev/null hdparm ${DEVICE_ARGS} ${all_args} ${cd_device}
 }
