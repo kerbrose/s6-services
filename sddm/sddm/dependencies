@@ -1,2 +1,3 @@
-agetty-tty1
 elogind
+mount-tmpfs
+udevadm
