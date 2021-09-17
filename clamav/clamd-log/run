@@ -1,6 +1,6 @@
 #!/usr/bin/execlineb -P
 envfile /etc/s6/config/clamav.conf
-importas -sCiu CLAMD_DIRECTIVES CLAMD_DIRECTIVES
+importas -sCuD "n3 s2000000 T" CLAMD_DIRECTIVES CLAMD_DIRECTIVES
 ifelse { test -w /var/log } {
 	foreground { install -d -o s6log -g s6log /var/log/clamd }
 	s6-setuidgid s6log exec -c s6-log -d3 -b -- ${CLAMD_DIRECTIVES} /var/log/clamd

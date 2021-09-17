@@ -1,12 +1,12 @@
 #!/usr/bin/execlineb -P
 envfile /etc/s6/config/cpupower.conf
-importas -D "" governor governor
-importas -D "" min_freq min_freq
-importas -D "" max_freq max_freq
-importas -D "" freq freq
-importas -D "" mc_scheduler mc_scheduler
-importas -D "" smp_scheduler smp_scheduler
-importas -D "" perf_bias perf_bias
+importas -uD "" governor governor
+importas -uD "" min_freq min_freq
+importas -uD "" max_freq max_freq
+importas -uD "" freq freq
+importas -uD "" mc_scheduler mc_scheduler
+importas -uD "" smp_scheduler smp_scheduler
+importas -uD "" perf_bias perf_bias
 
 # frequency options
 if -t { test ${governor} } cpupower frequency-set ${governor}

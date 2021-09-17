@@ -1,4 +1,4 @@
 #!/usr/bin/execlineb -P
 envfile /etc/s6/config/wireguard.conf
-importas -iu WG_INTERFACE WG_INTERFACE
-exec wg-quick up "$WG_INTERFACE"
+importas -uD "wg0" WG_INTERFACE WG_INTERFACE
+exec wg-quick up ${WG_INTERFACE}

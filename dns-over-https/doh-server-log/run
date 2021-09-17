@@ -1,9 +1,9 @@
 #!/usr/bin/execlineb -P
 envfile /etc/s6/config/dns-over-https.conf
-importas -sCiu DOH_SERVER_DIRECTIVES DOH_SERVER_DIRECTIVES
+importas -sCuD "n3 s2000000 T" DOH_SERVER_DIRECTIVES DOH_SERVER_DIRECTIVES
 ifelse { test -w /var/log } {
 	foreground { install -d -o s6log -g s6log /var/log/doh-server }
 	s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DOH_SERVER_DIRECTIVES} /var/log/doh-server
 }
 foreground { install -d -o s6log -g s6log /run/log/doh-server }
-s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DIRECTIVES} /run/log/doh-server
+s6-setuidgid s6log exec -c s6-log -d3 -b -- ${DOH_SERVER_DIRECTIVES} /run/log/doh-server

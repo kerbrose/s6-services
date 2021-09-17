@@ -1,7 +1,7 @@
 #!/usr/bin/execlineb -P
 envfile /etc/s6/config/minio.conf
-importas -iu MINIO_VOLUMES MINIO_VOLUMES
-importas -u MINIO_OPTS MINIO_OPTS
+importas -uD "" MINIO_VOLUMES MINIO_VOLUMES
+importas -uD "" MINIO_OPTS MINIO_OPTS
 foreground { chown -R minio "$MINIO_VOLUMES" }
 foreground { chmod u+rxw "$MINIO_VOLUMES" }
 fdmove -c 2 1

@@ -1,5 +1,5 @@
 #!/usr/bin/execlineb -P
 envfile /etc/s6/config/ntp.conf
-importas -sCiu OPTS OPTS
+importas -sCuD "" OPTS OPTS
 fdmove -c 2 1
 exec ntpd -g -u ntp:ntp -n ${OPTS}

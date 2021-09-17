@@ -1,7 +1,7 @@
 #!/usr/bin/execlineb -P
 if -t -n { pipeline { cat /proc/cmdline } grep -qF nohdparm }
 envfile /etc/s6/config/hdparm.conf
-importas -sCD "" pata_all_args pata_all_args
+importas -sCuD "" pata_all_args pata_all_args
 importas -sCuD "" sata_all_args sata_all_args
 importas -sCuD "" all_args all_args
 elglob -0 hd_devices /dev/hd*
