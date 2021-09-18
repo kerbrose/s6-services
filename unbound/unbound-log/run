@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/unbound.conf
 importas -sCuD "n3 s2000000 T" DIRECTIVES DIRECTIVES
 ifelse { test -w /var/log } {

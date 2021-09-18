@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 foreground { 
 	if -t -n { test -f /etc/stunnel/stunnel.conf }
 	foreground { cp /etc/stunnel/stunnel.conf-sample /etc/stunnel/stunnel.conf }

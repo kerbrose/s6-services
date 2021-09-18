@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/postgresql.conf
 importas -uD "/var/lib/postgres" PGROOT PGROOT
 importas -uD "/var/lib/postgres/data" PGDATA PGDATA

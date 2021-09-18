@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/distcc.conf
 importas -sCuD "" DISTCCD_OPTS DISTCCD_OPTS
 fdmove -c 2 1

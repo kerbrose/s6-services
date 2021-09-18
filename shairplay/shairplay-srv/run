@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/shairplay.conf
 importas -uD "shairplay" SHAIRPLAY_NAME SHAIRPLAY_NAME
 importas -uD "" SHAIRPLAY_PASSWORD SHAIRPLAY_PASSWORD

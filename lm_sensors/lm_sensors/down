@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 foreground { 
 	envfile -I /etc/conf.d/lm_sensors
 	redirfd -w 2 /dev/null importas -sCuD "" BUS_MODULES BUS_MODULES

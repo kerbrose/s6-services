@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/nvidia-utils.conf
 importas -uD "" NVPD_USER NVPD_USER
 importas -sCuD "" ARGS ARGS

@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/deluge.conf
 importas -sCuD "n3 s2000000 T" DELUGED_DIRECTIVES DELUGED_DIRECTIVES
 ifelse { test -w /var/log } {

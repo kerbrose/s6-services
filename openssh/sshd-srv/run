@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 foreground { redirfd -w 1 /dev/null ssh-keygen -A }
 foreground { touch /var/log/lastlog }
 foreground { chgrp utmp /var/log/lastlog }

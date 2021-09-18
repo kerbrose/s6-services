@@ -1,2 +1,2 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 foreground { sh /etc/s6/sv/cryptsetup/shell_up }

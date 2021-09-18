@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 foreground { mkdir -p /var/cache/backlight }
 pipeline { ls /sys/class/backlight }
 forstdin CARD

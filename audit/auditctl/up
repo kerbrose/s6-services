@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/audit.conf
 importas -uD "yes" USE_AUGENRULES USE_AUGENRULES
 foreground { if { test $USE_AUGENRULES = no } redirfd -w 1 /dev/null augenrules }

@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 foreground { if -n -t { test -d /var/lib/jenkins } install -dm 0755 -o jenkins -g jenkins /var/lib/jenkins }
 export JENKINS_USER jenkins
 export JENKINS_HOME /var/lib/jenkins

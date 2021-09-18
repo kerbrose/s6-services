@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/lvm2.conf
 importas -sCuD "n3 s2000000 T" LVMPOLLD_DIRECTIVES LVMPOLLD_DIRECTIVES
 ifelse { test -w /var/log } {

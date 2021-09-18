@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 envfile /etc/s6/config/ufw.conf
 importas -uD "n3 s2000000 T" DIRECTIVES DIRECTIVES
 foreground { if -nt { test -d /var/log/ufw } install -dm755 -o s6log -g s6log /var/log/ufw }

@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 foreground { if -n { test -d /var/lib/tor } install -d -o tor -g tor /var/lib/tor }
 fdmove -c 2 1
 exec tor --runasdaemon 0 

@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/bin/execlineb -P
 if -t -n { pipeline { cat /proc/cmdline } grep -qF nohdparm }
 envfile /etc/s6/config/hdparm.conf
 importas -sCuD "" pata_all_args pata_all_args
