@@ -1,4 +1,4 @@
 #!/bin/execlineb -P
 envfile /etc/s6/config/ufw.conf
-importas -uD "n3 s2000000 T" DIRECTIVES DIRECTIVES
+importas -sCuD "n3 s2000000 T" DIRECTIVES DIRECTIVES
 pipeline { ufw disable } s6-setuidgid s6log exec -c s6-log -b -- ${DIRECTIVES} /var/log/ufw
