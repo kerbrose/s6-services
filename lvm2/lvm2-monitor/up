@@ -1,12 +1,23 @@
 #!/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/lvm2-monitor } install -d -m 0755 -o s6log -g s6log /var/log/lvm2-monitor }
 foreground {
-	envfile /etc/s6/config/lvm2.conf
-	importas -sCuD "n3 s2000000 T" LVM2_MONITOR_DIRECTIVES LVM2_MONITOR_DIRECTIVES
-	pipeline { fdmove -c 2 1 vgchange --sysinit -a y } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_MONITOR_DIRECTIVES} /var/log/lvm2-monitor
+	ifelse { test -w /var/log } {
+		if -n -t { test -d /var/log/lvm2-monitor } install -d -m 0755 -o s6log -g s6log /var/log/lvm2-monitor
+	}
+	if -n -t { test -d /run/log/lvm2-monitor } install -d -m 0755 -o s6log -g s6log /run/log/lvm2-monitor
 }
 foreground {
 	envfile /etc/s6/config/lvm2.conf
 	importas -sCuD "n3 s2000000 T" LVM2_MONITOR_DIRECTIVES LVM2_MONITOR_DIRECTIVES
-	pipeline { fdmove -c 2 1 vgchange --monitor y } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_MONITOR_DIRECTIVES} /var/log/lvm2-monitor
+	ifelse { test -w /var/log } {
+		pipeline { fdmove -c 2 1 vgchange --sysinit -a y } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_MONITOR_DIRECTIVES} /var/log/lvm2-monitor
+	}
+	pipeline { fdmove -c 2 1 vgchange --sysinit -a y } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_MONITOR_DIRECTIVES} /run/log/lvm2-monitor
+}
+foreground {
+	envfile /etc/s6/config/lvm2.conf
+	importas -sCuD "n3 s2000000 T" LVM2_MONITOR_DIRECTIVES LVM2_MONITOR_DIRECTIVES
+	ifelse { test -w /var/log } {
+		pipeline { fdmove -c 2 1 vgchange --monitor y } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_MONITOR_DIRECTIVES} /var/log/lvm2-monitor
+	}
+	pipeline { fdmove -c 2 1 vgchange --monitor y } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_MONITOR_DIRECTIVES} /run/log/lvm2-monitor
 }

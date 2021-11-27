@@ -1,5 +1,13 @@
 #!/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/lvm2-pvscan } install -d -m 0755 -o s6log -g s6log /var/log/lvm2-pvscan }
+foreground { 
+	ifelse { test -w /var/log } {
+		if -n -t { test -d /var/log/lvm2-pvscan } install -d -m 0755 -o s6log -g s6log /var/log/lvm2-pvscan
+	}
+	if -n -t { test -d /var/log/lvm2-pvscan } install -d -m 0755 -o s6log -g s6log /run/log/lvm2-pvscan
+}
 envfile /etc/s6/config/lvm2.conf
 importas -sCuD "n3 s2000000 T" LVM2_PVSCAN_DIRECTIVES LVM2_PVSCAN_DIRECTIVES
-pipeline { fdmove -c 2 1 pvscan --cache --activate ay } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_PVSCAN_DIRECTIVES} /var/log/lvm2-pvscan
+ifelse { test -w /var/log } {
+	pipeline { fdmove -c 2 1 pvscan --cache --activate ay } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_PVSCAN_DIRECTIVES} /var/log/lvm2-pvscan
+}
+pipeline { fdmove -c 2 1 pvscan --cache --activate ay } s6-setuidgid s6log exec -c s6-log -b -- ${LVM2_PVSCAN_DIRECTIVES} /run/log/lvm2-pvscan
