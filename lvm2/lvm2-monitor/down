@@ -1,5 +1,5 @@
 #!/bin/execlineb -P
-foreground { if -n -t { test -d /var/log/lvm2-monitor } install -d -m 0755 -o s6log -g s6log /var/log/lvm2-monitor }
+foreground { install -d -m 0755 -o s6log -g s6log /var/log/lvm2-monitor }
 foreground {
 	envfile /etc/s6/config/lvm2.conf
 	importas -sCuD "n3 s2000000 T" LVM2_MONITOR_DIRECTIVES LVM2_MONITOR_DIRECTIVES
