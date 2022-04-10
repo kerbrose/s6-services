@@ -1,0 +1,5 @@
+#!/bin/execlineb -P
+foreground { mkdir -m0711 -p /run/gdm }
+foreground { chown root:gdm /run/gdm }
+fdmove -c 2 1
+exec gdm
